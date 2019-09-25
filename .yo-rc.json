@@ -1,0 +1,28 @@
+{
+  "@pnp/generator-spfx": {
+    "framework": "none",
+    "pnpFramework": "vuejs",
+    "pnp-libraries": [
+      "jquery@3",
+      "rush@3.5"
+    ],
+    "pnp-ci": [],
+    "pnp-vetting": [
+      "webpack-analyzer",
+      "stylelint",
+      "csscomb"
+    ],
+    "spfxenv": "spo"
+  },
+  "@microsoft/generator-sharepoint": {
+    "environment": "spo",
+    "framework": "none",
+    "isCreatingSolution": true,
+    "version": "1.9.1",
+    "libraryName": "spfx-vue-spademo",
+    "libraryId": "a9086b7d-36f0-471e-b531-35622178641b",
+    "packageManager": "npm",
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

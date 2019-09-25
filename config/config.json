@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "spa-demo-web-part-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/spaDemoWebPart/SpaDemoWebPartWebPart.js",
+          "manifest": "./src/webparts/spaDemoWebPart/SpaDemoWebPartWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {
+    "vue": "./node_modules/vue/dist/vue.min.js"
+  },
+  "localizedResources": {
+    "SpaDemoWebPartWebPartStrings": "lib/webparts/spaDemoWebPart/loc/{locale}.js"
+  }
+}
