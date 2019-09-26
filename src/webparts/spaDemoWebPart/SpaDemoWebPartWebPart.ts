@@ -8,10 +8,30 @@ import { escape } from '@microsoft/sp-lodash-subset';
 
 import * as strings from 'SpaDemoWebPartWebPartStrings';
 
-// Importing Vue.js
+import { sp } from "@pnp/sp";
+
 import Vue from 'vue';
-// Importing Vue.js SFC
-import SpaDemoWebPartComponent from './components/SpaDemoWebPart.vue';
+import BootstrapVue from 'bootstrap-vue';
+
+Vue.use(BootstrapVue);
+
+// import custom styles
+require('./assets/bootstrap/dashboard.scss');
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { dom } from '@fortawesome/fontawesome-svg-core';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+library.add(far, fas);
+
+dom.watch();
+
+Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+import router from './router';
+import App from './components/App.vue';
 
 export interface ISpaDemoWebPartWebPartProps {
   description: string;
@@ -19,13 +39,24 @@ export interface ISpaDemoWebPartWebPartProps {
 
 export default class SpaDemoWebPartWebPart extends BaseClientSideWebPart<ISpaDemoWebPartWebPartProps> {
 
+  public onInit(): Promise<void> {
+    sp.setup({
+      spfxContext: this.context
+    });
+    
+    console.log("Super onInit called: " + this.context.pageContext.web.absoluteUrl);
+
+    return Promise.resolve();
+  }
+
   public render(): void {
     const id: string = `wp-${this.instanceId}`;
     this.domElement.innerHTML = `<div id="${id}"></div>`;
 
     let el = new Vue({
       el: `#${id}`,
-      render: h => h(SpaDemoWebPartComponent, {
+      router: router,
+      render: h => h(App, {
         props: {
           description: this.properties.description
         }

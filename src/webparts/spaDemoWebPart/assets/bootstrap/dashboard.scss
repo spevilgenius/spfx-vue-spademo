@@ -1,0 +1,479 @@
+/* import what we need to override */
+@import 'scss/functions';
+@import 'scss/variables';
+@import 'scss/mixins';
+
+/* set the overriding variables */
+$grid-breakpoints: (
+  xxxs: 0,
+  xxs: 320px,
+  xs: 568px,
+  sm: 667px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1440px,
+  xxxl: 1600px,
+  xxxxl: 1900px
+);
+$container-max-widths: (
+  xxxs: 0,
+  xxs: 320px,
+  xs: 568px,
+  sm: 667px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1440px,
+  xxxl: 1600px,
+  xxxxl: 1900px
+);
+
+$enable-rounded: false;
+
+$ipgray: #d8d8d8 !default;
+$ipgraylb: #dcdcdc !default;
+$ipgraydb: #808080 !default;
+$ipyellow: #ffffcc !default;
+$ipbluehd: #bee5ff !default;
+
+$colors: (
+  'ipgray': $ipgray,
+  'ipgraylb': $ipgraylb,
+  'ipgraydb': $ipgraydb,
+  'ipyellow': $ipyellow,
+  'ipbluehd': $ipbluehd
+);
+
+$theme-colors: (
+  'ipgray': $ipgray,
+  'ipgraylb': $ipgraylb,
+  'ipgraydb': $ipgraydb,
+  'ipyellow': $ipyellow,
+  'ipbluehd': $ipbluehd
+);
+
+$input-bg: $ipyellow !default;
+$input-color: $black !default;
+$input-border-color: $ipgraylb !default;
+
+$font-size-xs: $font-size-base * 0.65;
+$input-btn-font-size-xs: $font-size-xs;
+$input-font-size-xs: $input-btn-font-size-xs;
+$line-height-xs: 0.65;
+$input-btn-padding-y-xs: 0.25rem;
+$input-btn-padding-x-xs: 0.25rem;
+$input-padding-y-xs: $input-btn-padding-y-xs;
+$input-padding-x-xs: $input-btn-padding-x-xs;
+$input-btn-font-size-xs: $font-size-xs;
+$input-btn-line-height-xs: $line-height-xs;
+$input-line-height-xs: $input-btn-line-height-xs;
+$input-height-xs: calc(
+  #{$input-line-height-xs * 1em} + #{$input-btn-padding-y-xs * 2} + #{$input-height-border}
+);
+$border-radius-xs: 0.2rem;
+$input-border-radius-xs: $border-radius-xs;
+
+/* override the !default vars with the values we set above */
+@import 'scss/bootstrap.scss';
+
+/* CUSTOM DASHBOARD CSS */
+#SPADemo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000 !important;
+}
+
+#workbenchCommandBar {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  color: #000000;
+  text-align: left;
+  background-color: #fff;
+}
+
+.legoheader {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAIAAABLixI0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAGymlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDUgNzkuMTYzNDk5LCAyMDE4LzA4LzEzLTE2OjQwOjIyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOCAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDE4LTA3LTExVDAzOjExOjA0LTA0OjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDE5LTA5LTI2VDEyOjUxOjQ5LTA0OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAxOS0wOS0yNlQxMjo1MTo0OS0wNDowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ZTY3NDQ3YjMtNGJhMi0yMzQ2LTk2NmUtZjRkZGUxYmVmODMyIiB4bXBNTTpEb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6NGYzYWFkNmQtMGM2Yi0xYTRhLWI4MjctNmJmMzZkYzU3NDYyIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6NmZlN2Q5Y2ItNzg4Yi1jODQxLWI0ZDctZWM0ZTRlOWQwY2EzIiBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIiBwaG90b3Nob3A6SUNDUHJvZmlsZT0ic1JHQiBJRUM2MTk2Ni0yLjEiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjZmZTdkOWNiLTc4OGItYzg0MS1iNGQ3LWVjNGU0ZTlkMGNhMyIgc3RFdnQ6d2hlbj0iMjAxOC0wNy0xMVQwMzoxMTowNC0wNDowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDpmN2Q5MjI4Yi0yNDE4LTk1NDktYWFmMS01ZjU4MTIzMDQ2ZmYiIHN0RXZ0OndoZW49IjIwMTktMDktMjZUMTI6NTE6NDktMDQ6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE5IChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6ZTY3NDQ3YjMtNGJhMi0yMzQ2LTk2NmUtZjRkZGUxYmVmODMyIiBzdEV2dDp3aGVuPSIyMDE5LTA5LTI2VDEyOjUxOjQ5LTA0OjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOSAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+IlRohwAAAi9JREFUOI2NlctS6zAMQCVZahroop1hhj3//2csLp12mvghi4XAddJcQKvIkY+eUfDt7c3MoBNXNw9/ODEz+vXOpmya0V9u/pFOK71/QERE/J+6uoiIvOEBwMxCCKo6TZOqumkIQUSIyImPuA0WmgXmaZpijCEEZnZcSimlFELY7/ebxDurJVJrPZ/PT09PLy8vMcacs31LKWWapuv1Oo6jiKxSXsTl7/59fBwOh9fX1/P5PM9zO0dEERHhaZpjjIjIvLi+Zl0uFyI6nU7v7++qSnRvTpu7cRzNzHEhhGZAfSM8hePxOM9zrdVBnt0jDhE9/SXLdcQY406EmUspDZFzdrXWqqUAQEqp1ioifr5guYYAJefdMHj5AYCIfDhERFXdn6oiYlX1YnmLFzn2KfR5eTj+XGttTaAQfHC/fDhrUQvEvjp+31k+9F7Eu0E3Yoh4rz0AsIiqtst+OAyDQ1uMPqjutZktvkcz24moqldEVUspAND3gYj8rTfdWY3AfadFJIRwu92en5/he0Rbgk0lRDPLORNRm5uN2o/jWEpJKTGz5+LWzT8RIZEPIDM3HwBA0FXazJh5HMd5nmOMjmiVdq6Z3W635qwPhVerSFWZeRiGlFIpxbNur1Q151xr3e1261WxuXMAwPdUSqmPzoWIfEO43ENb7cLFB0EkImZWVasZAIQQWiB9N36Jq+G8ifT4y3nYhfa4C3tps953ALrFv5Kf4vqKDtGWDW3EVQSfmxEFzpVZFMEAAAAASUVORK5CYII=');
+  background-repeat: repeat repeat;
+}
+
+.legobrand {
+  width: 100px;
+  background-color: #f4a94c;
+}
+
+.footer {
+  height: 50px;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAIAAABLixI0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAGymlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDUgNzkuMTYzNDk5LCAyMDE4LzA4LzEzLTE2OjQwOjIyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0RXZ0PSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VFdmVudCMiIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOCAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDE4LTA3LTExVDAzOjE3OjM5LTA0OjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDE5LTA5LTI2VDEyOjUzOjA0LTA0OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAxOS0wOS0yNlQxMjo1MzowNC0wNDowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NGM2MmFlZDgtZjkyYi04OTQ3LWJjNTktNjhiNmY4NjVmZDQwIiB4bXBNTTpEb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6ZmQ2MWI1MWItYTNjNS05OTQwLTk1YzMtNWE4NjRhOGM4NzVhIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6OWQ1OTUxOTMtMjcyMS1jMTRlLTlkN2ItMDI1OTcyNzFiODZlIiBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIiBwaG90b3Nob3A6SUNDUHJvZmlsZT0ic1JHQiBJRUM2MTk2Ni0yLjEiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjlkNTk1MTkzLTI3MjEtYzE0ZS05ZDdiLTAyNTk3MjcxYjg2ZSIgc3RFdnQ6d2hlbj0iMjAxOC0wNy0xMVQwMzoxNzozOS0wNDowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDpkNzI1NDA1OC1lODhhLTNhNGItOGFiNy05NTAyNTBmYjUyYjUiIHN0RXZ0OndoZW49IjIwMTktMDktMjZUMTI6NTM6MDQtMDQ6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE5IChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6NGM2MmFlZDgtZjkyYi04OTQ3LWJjNTktNjhiNmY4NjVmZDQwIiBzdEV2dDp3aGVuPSIyMDE5LTA5LTI2VDEyOjUzOjA0LTA0OjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOSAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+x6N7lwAAA5NJREFUOI19VctuHDcQrGqS89iHvALs2DGMOECAnHzPB+TvcwjgQxA4AWLn4CBZSZa80r6GZFcOq12tZCV9GHBIotisLlbz8scfcBuCIODud//B0UhfzAAI5OU2G/4n9H+LD3YKsPszD4MgyP0Y/G80AvEe8hEsAZIg5AIh8XYbd2c+knP8ckqSeQ0xXa3Xi9WyVMkMZJNi3zSTFO2xBMVbrCM+5W1qBqUP879lcdx2SQLkrpucL4a8SGnWtaNggQ8B7/ISIKANcVXKx5vVs2+/e963Wiy2w1YSgKfCUMp8tTxbrk5H3UlM4QiND+4YidUwvD//9P2bN7Px+OrDH9WdxsNpIcRXJycXq/V8PbDnNAQSuwSlQx0FkgT/PDt79fLlLMWL3351ycyO2anywfV01M9SnG+2W3fsFUfCDhU04Pz6OjXNi9nJ5V8fmRqQu6JV911ZCRiZped9C2E+FAGCdtvsQFYMYbHenM5mNZdaykBCArksdV1qDWmRSy65xrQYikOnTbrIeVnrgfA7rVYpS11KuRQBxT0Yt+4hhGmTcskGd4ubYSAwOE5SWFe/LO57DmyXFAEHLCVUL9uNhWAAJJq5VF0iR2YCEhSDWbAIQvpc6uAOiIIdtEVXLrlIBg1kMJJWqnutIL2WARyAYCZALgKDtHJllwPgEV/BAHCThxAC3BOZvUp60sRcq9XKmIzcSqL1xo37jasCBXCAgB0kL2nadZ+WKwO3w/B5tR5KLSVfbzOgAuaSrQxZItEFO89lKSSy7nV+j/sX0/Gy1rPlctb3bUoxhi5Fs9DG2MU4IvqUOvnUsM7l3XITLbRGQpKOtAq41IXwYjL5/Wph0GnXRGMbQh+DhMbMSADjGBvw7WL5T/XTFFoy7OyId1gCMJT69aif9P3bT1fLIXdmu+XdIzGyNzPp58/Xb9fDrGmmwTqzuPOmB+9RANxfT0bvbvDT1c03bXrWNl0wAwEN7vNc3t2sP1aftM0shHGw3hhJI4QvPMeBCL0ede/Nfllvm22eGpsQivt18UuvlfakaXrj1HgSrDPu3vZ9n9j3CgIj8nWbOrPzXObFS64AgllroTM05CTYE7OJsSUDb4X/iK8CCMTY7KuIEXkT66qqAJACEMneODIbGRsykba/V3zUuQUEYmpsaCNxG1SEXROIRCITmMhI3JmbEHXcCO73PiM7Ijl6UxEchBTIaDTAAOOtYwkS9C+FAQGygUWXvgAAAABJRU5ErkJggg==');
+  background-repeat: repeat repeat;
+}
+
+#maincontainer {
+  min-height: calc(100vh - 100px);
+  z-index: 10;
+  background-color: #ffffff;
+}
+
+.container {
+  padding-top: 2px;
+}
+
+input[type='password'],
+input[type='text'],
+input[type='file'],
+select,
+textarea,
+.sp-peoplepicker-topLevel,
+.sp-peoplepicker-topLevelDisabled,
+.sp-peoplepicker-autoFillContainer,
+.ms-inputBox {
+  border: 1px solid #dcdcdc; // set the same as ipgraylb
+  background-color: #ffffcc; // set the same as ipyellow
+  color: #000000;
+}
+
+hr {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  border: 0;
+  border-top: 1px solid black;
+}
+
+// static width styles
+.px10 {
+  width: 10px;
+}
+.px20 {
+  width: 20px;
+}
+.px30 {
+  width: 30px;
+}
+.px40 {
+  width: 40px;
+}
+.px50 {
+  width: 50px;
+}
+.px60 {
+  width: 60px;
+}
+.px70 {
+  width: 70px;
+}
+.px80 {
+  width: 80px;
+}
+.px90 {
+  width: 90px;
+}
+.px100 {
+  width: 100px;
+}
+.px110 {
+  width: 110px;
+}
+.px120 {
+  width: 120px;
+}
+.px130 {
+  width: 130px;
+}
+.px140 {
+  width: 140px;
+}
+.px150 {
+  width: 150px;
+}
+.px160 {
+  width: 160px;
+}
+.px170 {
+  width: 170px;
+}
+.px180 {
+  width: 180px;
+}
+.px190 {
+  width: 190px;
+}
+.px200 {
+  width: 200px;
+}
+.px210 {
+  width: 210px;
+}
+.px220 {
+  width: 220px;
+}
+.px230 {
+  width: 230px;
+}
+.px240 {
+  width: 240px;
+}
+.px250 {
+  width: 250px;
+}
+.px260 {
+  width: 260px;
+}
+.px270 {
+  width: 270px;
+}
+.px280 {
+  width: 280px;
+}
+.px290 {
+  width: 290px;
+}
+.px300 {
+  width: 300px;
+}
+
+.pw10 {
+  width: 10%;
+}
+.pw20 {
+  width: 20%;
+}
+.pw30 {
+  width: 30%;
+}
+.pw40 {
+  width: 40%;
+}
+.pw50 {
+  width: 50%;
+}
+.pw60 {
+  width: 60%;
+}
+.pw70 {
+  width: 70%;
+}
+.pw80 {
+  width: 80%;
+}
+.pw90 {
+  width: 90%;
+}
+.pw100 {
+  width: 100%;
+}
+
+.navbar-brand-svg {
+  fill: #f4a94c; /* #5aa0f0; */
+}
+.navbar .navbar-brand {
+  color: #000000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 13px 20px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 20px;
+  height: 50px;
+  width: 200px;
+  margin: 0 !important;
+}
+.bg-dark {
+  background-color: #000000 !important;
+}
+
+/* BEGIN SEARCH */
+.app-search {
+  position: relative;
+  margin: 0px;
+}
+.app-search a {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  color: #ffffff;
+}
+.app-search .form-control {
+  border: none;
+  font-size: 13px;
+  color: #ffffff;
+  padding-left: 20px;
+  padding-right: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+  height: 50px;
+  font-weight: 600;
+  width: 180px;
+  display: inline-block;
+  line-height: 50px;
+  transition: 0.5s ease-out;
+}
+.app-search .form-control:focus {
+  border: none;
+  font-size: 13px;
+  color: #ffffff;
+  padding-left: 20px;
+  padding-right: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+  height: 50px;
+  font-weight: 600;
+  width: 250px;
+  display: inline-block;
+  line-height: 50px;
+  transition: 0.5s ease-out;
+}
+.app-search .form-control::-moz-placeholder {
+  color: #fafafa;
+  opacity: 0.5;
+}
+.app-search .form-control::-webkit-input-placeholder {
+  color: #fafafa;
+  opacity: 0.5;
+}
+.app-search .form-control::-ms-placeholder {
+  color: #fafafa;
+  opacity: 0.5;
+}
+/* END SEARCH */
+.icon {
+  color: white;
+  font-size: 18px;
+}
+.badge {
+  display: inline-block;
+  min-width: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border-radius: 6px;
+  margin-top: -7px;
+}
+
+.navbar {
+  padding: 0.5rem 0;
+  height: 50px;
+  font-size: 18px;
+  line-height: 18px;
+}
+.navbar-nav {
+  height: 50px;
+}
+.nav-link {
+  display: block;
+  height: 50px;
+  padding: 15px;
+  color: #ffffff;
+}
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 1);
+}
+.navbar-nav li:hover > ul.dropdown-menu {
+  display: block;
+}
+a:hover > ul.dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 50px;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  color: #ffffff !important;
+  text-align: left;
+  list-style: none;
+  background-color: #000000 !important;
+  background-clip: padding-box;
+  border: 1px solid #000000;
+}
+
+li:hover > .dropdown-item {
+  background-color: #f4a94c;
+  color: #000000;
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: #000000;
+  border: 0;
+}
+
+#ulSettings .dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: #000000;
+  border: 0;
+}
+
+.settingsli {
+  display: inline-flex;
+  width: 200px;
+}
+
+#ulSettings li:hover {
+  background-color: #f4a94c;
+}
+
+#ulSettings li:hover > .icon {
+  background-color: #f4a94c;
+  color: #000000;
+}
+
+#ulSettings li:hover > .dropdown-item {
+  background-color: #f4a94c;
+  color: #000000;
+}
+
+#ulSettings .icon {
+  color: white;
+  font-size: 18px;
+  width: 20px;
+  margin: 4px;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: 0;
+}
+.dropdown-toggle::after {
+  transform: rotate(-90deg);
+}
