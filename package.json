@@ -30,7 +30,7 @@
     "@types/es6-promise": "0.0.33",
     "@types/webpack-env": "1.13.1",
     "bootstrap-vue": "^2.0.0-rc.28",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "vue": "^2.6.10",
     "vue-class-component": "^7.1.0",
     "vue-property-decorator": "^8.2.2",
